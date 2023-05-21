@@ -1,4 +1,4 @@
-import styles from "../styles/Card.module.css"
+import styles from "./Cards.module.css"
 import { Link } from "react-router-dom";
 
 

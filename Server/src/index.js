@@ -1,19 +1,15 @@
 let http = require("http");
-let data = require("./utils/data.js");
+let characters = require("./utils/data.js");
 
 http
   .createServer((req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const id = req.url.split("/").at(-1);
-    console.log(id);
-
-    const personaje = data.find((char) => {
-      char.id == id;
-    }); //el + frente al numero es una simplificacion un parseint
-    console.log(personaje);
+    
     if (req.url.includes("/rickandmorty/character")) {
-      res.writeHead(200, { "Content-Type": "application/json" });
-      return res.end(JSON.stringify(personaje));
+      const id = req.url.split("/").at(-1);
+      let characterFilter = characters.find((char)=>char.id === Number(id));
+
+      return res.writeHead(200, { "Content-Type": "application/json" }).end(JSON.stringify(characterFilter));
     }
     res.end(404);
   })

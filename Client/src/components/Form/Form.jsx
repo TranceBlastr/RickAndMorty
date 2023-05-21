@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import styles from "../styles/Form.module.css"
+import styles from "./Form.module.css"
 import { useState } from "react";
-import validation from "../Redux/Validation";
+import validation from "../../Redux/Validation";
 
 //!----------------------------------------------------------------------------
 
@@ -29,30 +29,43 @@ export default function Form ({login}){
 
 //!-----------------COMPONENTE 
   return (
-<div className={styles.div}>
-    <form className={styles.form} onSubmit={handlerSubmit}>
+<div className={styles.loginContainer}>
+    <form className={styles.loginForm} onSubmit={handlerSubmit}>
       
-      <h1 className={styles.titulo}>Formulario Login</h1>      
+      
+      <h1 className={styles.titulo}>Rick & Morty</h1>      
+      
+      
+      <h2 className={styles.subtitulo}>Inicio de sesión</h2>
+      
       <label htmlFor="email">Email: </label>
       <input 
-      onChange={handleChange} 
-      value={userData.email} 
-      type="text" 
       name="email" 
+      type="text" 
       placeholder="Ingrese su Email"
+      value={userData.email} 
+      onChange={handleChange} 
       /> 
       {errors.e1? (<p>{errors.e1}</p>):
         errors.e2 ? (<p>{errors.e2}</p>):
          errors.e3 ?  (<p>{errors.e3}</p>) : null}
-      <hr />
       
+
       <label htmlFor="password">Password: </label>
-      <input onChange={handleChange} value={userData.password} type="" name="password" placeholder="Ingrese su contraseña" />
+      <input
+      name="password"
+      type="password"
+      placeholder="Ingrese su contraseña"
+      value={userData.password}
+      onChange={handleChange}
+      />
       {errors.p1? (<p>{errors.p1}</p>):
         errors.p2 ? (<p>{errors.p2}</p>):null}
-      <hr />
-      <button onClick={handlerSubmit} type="submit">ENVIAR</button>
-      <hr />
+
+
+      <button className={styles.loginButton} onClick={handlerSubmit} type="submit">ENVIAR</button>
+
+
     </form>
 </div>
   );

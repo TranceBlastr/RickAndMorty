@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 //!================================================
-import style from "./styles/App.module.css";
+import style from "./App.module.css";
 //!================================================
-import Cards from "./components/Cards.jsx";
-import Nav from "./components/Nav.jsx";
-import About from "./components/About";
-import Detail from "./components/Detail";
-import Form from "./components/Form";
+import Cards from "./components/Cards/Cards.jsx";
+import Nav from "./components/NavBar/Nav.jsx";
+import About from "./components/About/About.jsx";
+import Detail from "./components/Detail/Detail.jsx";
+import Form from "./components/Form/Form.jsx";
 //!================================================
 const EMAIL = "brian.andrais@gmail.com";
 const PASSWORD = "rick123";
@@ -36,7 +36,7 @@ function App() {
   }
 
   //!================================================
-  
+
   useEffect(() => {
     !access && navigate("/");
   }, [access, navigate]);
@@ -66,19 +66,14 @@ function App() {
 
   return (
     <div className={style.App}>
-      {/* <Cards characters={characters} onClose={onClose}/> */}
       {pathname !== "/" && <Nav onSearch={onSearch} logOut={logOut} />}
       <Routes>
-        <Route path="/" element={<Form login={login} />}></Route>
-        <Route
-          path="/home"
-          element={<Cards characters={characters} onClose={onClose} />}
-        ></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/detail/:id" element={<Detail />}></Route>
+        <Route path="/" element={<Form login={login}/>}></Route>
+        <Route path="/home"element={<Cards characters={characters} onClose={onClose}/>}></Route>
+        <Route path="/about" element={<About/>}></Route>
+        <Route path="/detail/:id" element={<Detail/>}></Route>
       </Routes>
     </div>
   );
 }
-
 export default App;
